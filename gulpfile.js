@@ -39,6 +39,7 @@ gulp.task('bower-build', function () {
     var jsFilter = gulpFilter('**/*.js', {restore: true});  //отбираем только  javascript файлы
     var cssFilter = gulpFilter('**/*.css');  //отбираем только css файлы
     let bower = mainBowerFiles();
+    bower.push('./bower_components/moment/locale/ru.js');
     bower.push('./Scripts/visioglobe/vg.mapviewer.web.js');
     return gulp.src(bower)
     // собираем js файлы , склеиваем и отправляем в нужную папку

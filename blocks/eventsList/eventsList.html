@@ -8,10 +8,12 @@
                 <!--moloko-image-api="item.EventID" url="/Event/:id/WideLogo" default="Content/images/card_event_cover_holder.png">-->
             </div>
             <div class="event__item__container">
-                <div class="event__item__container__remain" ng-if="item.DateEnd">
-                    <img src="Content/images/icn_alarm_red.png">
-                    <span ng-bind="::item.DateEnd|remainDays"></span>
-                </div>
+                <!--<div class="event__item__container__remain" ng-if="item.DateEnd">-->
+                <!--<img src="Content/images/icn_alarm_red.png">-->
+                <!--<span ng-bind="::item.DateEnd|remainDays"></span>-->
+                <!--</div>-->
+                <remain-component start="item.DateBegin" stop="item.DateEnd"
+                                  class="event__item__container__remain"></remain-component>
                 <div class="event__container__organization" ng-bind="::item.Name">
 
                 </div>

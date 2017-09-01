@@ -10,12 +10,14 @@
             ng-repeat="item in items track by item.ProposalID" data-org-id="{{item.Organization.OrganizationID}}"
             ui-sref=".proposal({OrganizationID:item.Organization.OrganizationID,ProposalID:item.ProposalID})">
             <div class="proposalsListControlListElement__infoBlock">
-                <div class="proposalsListControlListElement__remainder" ng-if="item.DateEnd"
-                     ng-class="{'expired':item.RemainDays==0}">
+                <!--<div class="proposalsListControlListElement__remainder" ng-if="item.DateEnd"-->
+                <!--ng-class="{'expired':item.RemainDays==0}">-->
 
-                    <div src="Content/images/icn_alarm_red.png"></div>
-                    <span ng-bind="::item.DateEnd|remainDays"></span>
-                </div>
+                <!--<div src="Content/images/icn_alarm_red.png"></div>-->
+                <!--<span ng-bind="::item.DateEnd|remainDays"></span>-->
+                <!--</div>-->
+                <remain-component start="item.DateBegin" stop="item.DateEnd"
+                                  class="proposalsListControlListElement__remainder"></remain-component>
                 <div class="proposalsListControlListElement__name" ng-bind="::item.Organization.Name">
                 </div>
                 <div class="proposalsListControlListElement__summary" ng-bind="::item.Name">

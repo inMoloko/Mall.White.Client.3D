@@ -20,9 +20,17 @@
         let self = this;
         //return this.$http.get(this.settings.webApiBaseUrl + '/Event/GetFilter?CustomerID=' + this.settings.customerID + '&term=' + (term || '')).then(i => i.data);
         let futureDate = moment().add(14, 'days');
+        let date = new Date();
         return self.dbService.getData().then(data => {
             let result = self.$linq.Enumerable().From(data.Events).Select(i => i.Value)
-                .Where(i => (i.DateBegin === null && i.DateEnd === null) || (moment(i.DateBegin).isBefore(futureDate)) && (moment(i.DateEnd).isAfter()));
+                .Where(i => {
+                    if (i.PublishDateBegin !== null && i.PublishDateEnd !== null) {
+                        if (moment(date).isSameOrAfter(i.PublishDateBegin, 'day') && moment(date).isSameOrBefore(i.PublishDateEnd, 'day') && (i.DateEnd === null || moment(date).isSameOrBefore(i.DateEnd, 'day'))) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
             if (term) {
                 term = term.toLowerCase();
                 result = result.Where(i => (i.Name && i.Name.toLocaleLowerCase().includes(term))

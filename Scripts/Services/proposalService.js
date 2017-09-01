@@ -8,23 +8,9 @@
         this.dbService = dbService;
     };
     service.prototype.get = function (id) {
-        // let deferred = this.$q.defer();
-        // this.$http.get(this.settings.webApiBaseUrl + `/Proposal/GetById/${id}`).then(function (data) {
-        //     deferred.resolve(data.data);
-        // }, function (err) {
-        //     deferred.reject(err);
-        // });
-        // return deferred.promise;
         let self = this;
         return self.dbService.getData().then(data => {
             return data.Proposals[id];
-        });
-    };
-    service.prototype.getAll = function () {
-        let dt = new Date().toISOString();
-        var filter = `(DateEnd ge DateTime'${dt}' or DateEnd eq null) and (DateBegin le DateTime'${dt}' or DateBegin eq null)`;
-        return this.$http.get(this.settings.webApiBaseUrl + `/Proposal?$expand=Organization&$select=ProposalID,DateBegin,DateEnd,Name,Summary,Organization/Name&$filter=${filter}&CustomerID=${this.settings.customerID}`).then(function (data) {
-            return data.data;
         });
     };
     service.prototype.getFilter = function (term) {
@@ -35,7 +21,14 @@
         return self.dbService.getData().then(data => {
             let result = self.$linq.Enumerable().From(data.Proposals).Select(i => i.Value);
             let date = new Date();
-            result = result.Where(i => (moment(i.DateBegin).isBefore(date)) && (moment(i.DateEnd).isAfter(date)));
+            result = result.Where(i => {
+                if (i.PublishDateBegin !== null && i.PublishDateEnd !== null) {
+                    if (moment(date).isSameOrAfter(i.PublishDateBegin, 'day') && moment(date).isSameOrBefore(i.PublishDateEnd, 'day') && (i.DateEnd === null || moment(date).isSameOrBefore(i.DateEnd, 'day'))) {
+                        return true;
+                    }
+                }
+                return false;
+            });
             if (term) {
                 term = term.toLowerCase();
                 result = result.Where(i => (i.Name && i.Name.toLowerCase().includes(term)) || (i.Summary && i.Summary.toLowerCase().includes(term)) || (i.KeyWords && i.KeyWords.toLowerCase().includes(term)))
@@ -44,22 +37,20 @@
         });
     };
     service.prototype.getByOrganization = function (id) {
-        // let deferred = this.$q.defer();
-        // let dt = new Date().toISOString();
-        // let filter = `OrganizationID eq ${id} and DateEnd ge DateTime'${dt}' and DateBegin le DateTime'${dt}'`;
-        // this.$http.get(this.settings.webApiBaseUrl + `/Proposal?$select=ProposalID,DateBegin,DateEnd,Name,Summary,Organization/OrganizationID&$expand=Organization&$filter=${filter}`).then(function (data) {
-        //     deferred.resolve(data.data);
-        // }, function (err) {
-        //     deferred.reject(err);
-        // });
-        // return deferred.promise;
         let self = this;
         return self.dbService.getData().then(data => {
             let result = self.$linq.Enumerable().From(data.Proposals).Select(i => i.Value);
             let date = new Date();
-            result = result.Where(i => (moment(i.DateBegin).isBefore(date)) && (moment(i.DateEnd).isAfter(date))).Where(i => i.Organization.OrganizationID == id);
+            result = result.Where(i => {
+                if (i.PublishDateBegin !== null && i.PublishDateEnd !== null) {
+                    if (moment(date).isSameOrAfter(i.PublishDateBegin, 'day') && moment(date).isSameOrBefore(i.PublishDateEnd, 'day') && (i.DateEnd === null || moment(date).isSameOrBefore(i.DateEnd, 'day'))) {
+                        return true;
+                    }
+                }
+                return false;
+            }).Where(i => i.Organization.OrganizationID == id);
 
-            return result.OrderBy(i => i.DateEnd).ToArray();
+            return result.OrderByDescending(i => self.sort(i.DateBegin)).ToArray();
         });
     };
     service.prototype.getDetailFilter = function (filter) {
