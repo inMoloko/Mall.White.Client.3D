@@ -1,0 +1,55 @@
+﻿<div class="mapControl">
+    <div style="height:100%"></div>
+    <div id="instructions" class="instructions" ng-show="$ctrl.currentNavigation">
+        <div>
+            <div id="instructions_prev_button" class="instructions" ng-click="$ctrl.displayPrevInstruction()"><img
+                    src="Content/images/leftArrow.png"/></div>
+            <div id="instructions_count" class="instructions"></div>
+            <div id="instructions_brief" class="instructions"></div>
+            <div id="instructions_detail" class="instructions"></div>
+            <div id="instructions_icon_and_time">
+                <img id="instructions_icon" class="instructions"/>
+                <div id="instructions_time" class="instructions"></div>
+            </div>
+            <div id="instructions_next_button" class="instructions" ng-click="$ctrl.displayNextInstruction()"><img
+                    src="Content/images/rightArrow.png"/></div>
+        </div>
+        <div id="vg_statusbar">
+            <div class="info">
+            </div>
+        </div>
+    </div>
+    <div class="mapControl__btnContainer mapControl__btnContainer_right btnContainer">
+        <div style="background: transparent;z-index: 5; position:absolute;width: 50px;height: 50px;">
+            <button class="btnContainer__zoom_plus" ng-class="{'btnContainer__zoom_disabled':$ctrl.zoomInDisabled()}"
+                    ng-disabled="$ctrl.zoomInDisabled()"
+                    ng-click="$ctrl.zoomIn()">
+                <i class="iconMall-iconPlus" style="font-size: 2em;"></i>
+            </button>
+        </div>
+        <div style="background: transparent;z-index: 5; position:absolute;width: 50px;height: 50px;top:50px">
+            <button class="btnContainer__zoom_minus" ng-class="{'btnContainer__zoom_disabled':$ctrl.zoomOutDisabled()}"
+                    ng-disabled="$ctrl.zoomOutDisabled()"
+                    ng-click="$ctrl.zoomOut()">
+                <i class="iconMall-iconMinus" style="font-size: 2em;"></i>
+            </button>
+        </div>
+        <div ng-click="options.orginalAngel=!options.orginalAngel"
+             style="background: transparent;z-index: 5; position:absolute;width: 50px;height: 50px;top:100px;visibility:collapse">
+            <button class="btnContainer__zoom_minus"
+                    ng-class="{'btnContainer__originalAngle_active':options.orginalAngel}" style="">
+                <i class="iconMall-iconRotateMap" style="font-size: 1.7em;"></i>
+            </button>
+        </div>
+    </div>
+    <div class="mapControl__btnContainer mapControl__btnContainer_right mapControl__btnContainer_bottom btnContainer">
+        <div ng-repeat="fl in $ctrl.mapFloors" class="floor">
+            <div class="floor__label floor__label_right" ng-bind="$ctrl.getCount(fl)">>
+            </div>
+            <button class="btn floor__floor" ng-click="$ctrl.setFloor(fl.name)"
+                    ng-class="{'selected':$ctrl.currentMapFloor == fl.name}">
+                <span class="floor__number" ng-bind="fl.number"></span>
+            </button>
+        </div>
+    </div>
+</div>

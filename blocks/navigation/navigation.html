@@ -1,0 +1,24 @@
+<div class="navigation flex-row" ng-class="controller.themClass" ng-controller="navigationController as controller">
+    <div class="navigation-item flex-column align-item-center" ui-sref="navigation" ng-click="controller.home()">
+        <div class="img"></div>
+        <div ng-if="controller.themClass=='main'">Главная</div>
+    </div>
+    <div class="navigation-item flex-column align-item-center" ng-click="controller.selectItem('shops')">
+        <div class="img"></div>
+        <div ng-if="controller.themClass=='shops'">Магазины</div>
+    </div>
+    <div class="navigation-item flex-column align-item-center" ng-click="controller.selectItem('proposals')">
+        <div class="img"></div>
+        <div ng-if="controller.themClass=='proposals'">Акции</div>
+    </div>
+
+
+    <div class="navigation-item flex-column align-item-center" ng-click="controller.selectItem('restaurants')">
+        <div class="img"></div>
+        <div ng-if="controller.themClass=='food'">Еда</div>
+    </div>
+    <div class="navigation-item flex-column align-item-center" ui-sref="navigation.more">
+        <div class="img"></div>
+        <div ng-if="controller.themClass=='more'">Еще</div>
+    </div>
+</div>

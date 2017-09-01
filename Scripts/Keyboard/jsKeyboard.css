@@ -1,0 +1,228 @@
+
+body {
+    margin: 0px 0px;
+    padding: 0px; /* Need to set body margin and padding to get consistency between browsers. */
+    /* text-align:center; /* Hack for IE5/Win */
+    font-size: 14px;
+    font-family: Arial Unicode MS;
+    font-weight: normal;
+    overflow: hidden;
+}
+
+#virtualKeyboard {
+    width: 100%;
+    text-align: center;
+    /*background-color:#7b8490;*/
+    /*border-top:3px solid #000;*/
+}
+
+#keyboard {
+    padding: 10px;
+    width: 950px;
+    margin: 0 auto;
+    height: 288;
+    display: block;
+    padding-left: 25px;
+    display: block;
+    /*border: 1px solid lightgray;*/
+    -webkit-box-shadow: 0px 0px 8px #999;
+    -moz-box-shadow: 0px 0px 8px #999;
+    box-shadow: 0px 0px 8px #999;
+    /*    position:absolute;*/
+    /*bottom:0px; left:0px;*/
+    background: white;
+    position: fixed;
+    bottom: -350px;
+    /*left: calc((100% - 350px)/2);*/
+    right: 160px;
+    z-index: 100;
+}
+
+.formatTheme_vertical #keyboard {
+    right: 60px
+}
+
+#keyboard:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#keyboardHeader {
+    position: relative;
+    height: 30px;
+    font-size: 1.9em;
+}
+
+#keyboardHeader div {
+    color: #fff;
+    background-color: #7b8490;
+    padding: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: absolute;
+    cursor: pointer;
+    right: -10px;
+    top: -40px;
+}
+
+.closex {
+    font-weight: bolder;
+    color: #000;
+}
+
+#keyboardCapitalLetter {
+    display: none;
+}
+
+#keyboardSmallLetter {
+    display: block;
+}
+
+#keyboardNumber {
+    display: none;
+}
+
+#keyboardSymbols {
+    display: none;
+}
+
+#keyboardEnCapitalLetter {
+    display: none;
+}
+
+#keyboardEnSmallLetter {
+    display: none;
+}
+
+.button {
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    position: relative;
+    float: left;
+    margin-right: 7px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 1.9em;
+    border: 1px solid lightgray;
+
+    /*box shadow*/
+    /*-webkit-box-shadow: 0px 1px 3px #000000;-moz-box-shadow: 0px 1px 3px #000000;box-shadow: 0px 1px 3px #000000;*/
+    /*box radius*/
+    /*-moz-border-radius: 5px;border-radius: 5px;*/
+    /*gradient*/
+    background: #ffffff; /* old browsers */
+    /*background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* firefox */
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* webkit */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* ie */
+}
+
+.buttonDown {
+    background: none;
+    background-color: #c9cdd5;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+/*
+.button_a {}
+.button_dash {}
+.button_underscore {}
+.button_symbols_r1{}
+.button_enter {font-size:1.3em;}
+.button_del{}
+.button_langletter{font-size:1.3em;}
+.button_smallletter{font-size:1.3em;}
+.button_capitalletterleft{font-size:1.3em;}
+.button_capitalletterright{font-size:1.3em;}
+.button_numberleft{font-size:1.3em;}
+.button_numberright{font-size:1.3em;}
+.button_space {}
+.button_symbolsleft{font-size:1.3em;}
+.button_symbolsright{font-size:1.3em;}
+.button_question{}
+*/
+.button_special {
+    font-size: 1.3em;
+}
+
+.row-2nd {
+    margin-left: 13px;
+    clear: left;
+}
+
+.row-3rd {
+    margin-left: 39px;
+    clear: left;
+}
+
+.row-4th {
+    margin-left: 78px;
+    clear: left;
+}
+
+#keyboardNumber .button {
+    width: 75px;
+}
+
+#keyboardSymbols .button {
+    width: 75px;
+}
+
+#keyboardEnSmallLetter .button {
+    width: 65px;
+}
+
+#keyboardEnCapitalLetter .button {
+    width: 65px;
+}
+
+.key {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 16px;
+    text-shadow: 0px 1px 1px #ffffff;
+    filter: dropshadow(color=#ffffff, offx=0, offy=1);
+}
+
+.key_del {
+    padding-top: 18px;
+}
+
+.key_enter {
+    padding-top: 18px;
+}
+
+.key_smallletter {
+    padding-top: 18px;
+}
+
+.key_capitalletterleft {
+    padding-top: 18px;
+}
+
+.key_capitalletterright {
+    padding-top: 18px;
+}
+
+.key_number {
+    padding-top: 18px;
+}
+
+.key_symbols {
+    padding-top: 18px;
+}
+
+.button:hover {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0;
+    outline: thin dotted 9;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}

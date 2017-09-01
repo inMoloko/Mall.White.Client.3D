@@ -1,0 +1,35 @@
+﻿<div class="eventsList">
+    <ul class="eventsList__list" ng-scrollbars>
+        <li class="event__item" ng-repeat="item in controller.items" ui-sref=".event({EventID:item.EventID})">
+            <div class="event__item__logo-container">
+                <img src="" alt="" class="event__logo-container__img"
+                     file-system-image="Events/{{item.EventID + '_WideLogo.' + item.WideLogoExtension}}"
+                     default="Content/images/card_event_cover_holder.png">
+                <!--moloko-image-api="item.EventID" url="/Event/:id/WideLogo" default="Content/images/card_event_cover_holder.png">-->
+            </div>
+            <div class="event__item__container">
+                <div class="event__item__container__remain" ng-if="item.DateEnd">
+                    <img src="Content/images/icn_alarm_red.png">
+                    <span ng-bind="::item.DateEnd|remainDays"></span>
+                </div>
+                <div class="event__container__organization" ng-bind="::item.Name">
+
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div ng-show="controller.items.length==0">
+        <div class="errorHeaderBlock organizationsSearchResultItem__errorHeaderBlock">
+            По запросу <strong>"{{controller.filter| limitTo: 150 }}{{controller.filter.length > 150 ? '...' :
+            ''}}" </strong>
+            ничего не найдено.
+        </div>
+        <div class="errorBlock organizationsSearchResultItem__errorBlock">
+            Рекомендации:
+            <ul>
+                <li>Убедитесь, что все слова написаны без ошибок</li>
+                <li>Используйте более популярные ключевые слова.</li>
+            </ul>
+        </div>
+    </div>
+</div>

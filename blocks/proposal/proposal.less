@@ -1,0 +1,84 @@
+@import "../../style.less";
+
+.proposal {
+  background: white;
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden; //scroll;
+  position: absolute;
+  &:after {
+    .base-blur;
+  }
+
+  &__logo-container {
+    position: relative;
+    width: 100%;
+    &__img {
+      width: 630px;
+    }
+    &__organization-image {
+      border: solid 1px gray;
+      position: absolute;
+      bottom: -30px;
+      left: 50px;
+      width: 150px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    &__megacard {
+      position: absolute;
+      right: 50px;
+      bottom: -35px;
+    }
+  }
+
+  &__container {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 65px;
+
+    &__remain {
+      display: flex;
+      align-items: center;
+      > div {
+        height: 30px;
+        width: 30px;
+        background: url('Content/images/icn_alarm_red.png') no-repeat;
+        background-size: contain;
+      }
+      > span {
+        color: #EA8F64;
+        margin-left: 10px;
+      }
+    }
+    &__remain.expired {
+      > div {
+        height: 30px;
+        width: 30px;
+        background: url('Content/images/icn_alarm_gray.png') no-repeat;
+        background-size: contain;
+      }
+      > span {
+        color: gray;
+      }
+    }
+    &__organization {
+      margin-top: 10px;
+      font-size: 2em;
+      display: flex;
+      align-items: center;
+      > img {
+        height: 50px;
+      }
+    }
+    &__summary {
+      margin-top: 10px;
+      font-size: 2em;
+    }
+    &__description {
+      margin-top: 10px;
+      font-size: 1.3em;
+    }
+  }
+}

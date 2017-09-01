@@ -1,0 +1,21 @@
+<div class="filter" ng-scrollbars>
+    <div class="filter__container">
+        <button class="filter__button" ng-click="controller.selectAll()"
+                ng-class="{'filter__button_selected':controller.allSelected}">{{controller.allSelected?'Сбросить
+            все':'Выбрать все'}}
+        </button>
+        <button class="filter__button" ng-repeat="category in controller.limmited track by category.CategoryID"
+                ng-click="controller.select(category)"
+                ng-class="{'filter__button_selected':category.select}"
+                ng-bind="category.Name"></button>
+        <button class="filter__button" ng-click="controller.changeLimit()" ng-if="controller.categories.length>20"
+                ng-class="{'filter__button_close':controller.full}">{{controller.full?'Свернуть':'...'}}
+        </button>
+    </div>
+    <hr/>
+    <button class="filter__proposal-check" ng-click="controller.includeProposals()">
+        <div class="proposal-animation"></div>
+        <img ng-src="Content/images/{{controller.proposals?'abc_btn_check_to_on_mtrl_015':'abc_btn_check_to_on_mtrl_000'}}.png"><span>Акции</span>
+    </button>
+    <br>
+</div>

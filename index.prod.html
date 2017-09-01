@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Навигация по МЕГА ХИМКИ</title>
+    <link rel="icon" HREF="Content/icons/favicon.ico">
+    <link rel="stylesheet" href="vendor.min.css">
+    <link rel="stylesheet" href="client.css">
+</head>
+
+<body>
+<script src="vendor.min.js"></script>
+<script src="script.js"></script>
+<script src="templates.js"></script>
+
+<!-- endinject -->
+<div class="appContainer" ng-controller="mainController">
+    <div id="virtualKeyboard"></div>
+    <!--<div ui-view=""></div>-->
+    <div class="appContainer__basicArea">
+        <div class="appContainer__headBlock">
+            <div class="headBlock__searchControl" ui-view="search"></div>
+        </div>
+        <div class="appContainer__workspaceBlock">
+            <div class="workspaceBlock__sideBlock">
+                <div ui-view="searchResult"></div>
+            </div>
+        </div>
+
+        <div class="appContainer__footerBlock" ui-view="navigation"></div>
+    </div>
+    <div class="appContainer__mapBlock">
+        <div ng-include="'blocks/mapControl/mapControl.html'"
+             style="width:100%;height:100%;background:transparent;"></div>
+    </div>
+</div>
+</body>
+
+</html>

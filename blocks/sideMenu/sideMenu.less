@@ -1,0 +1,133 @@
+/*sideMenu*/
+@import "../../style.less";
+
+.sideMenu {
+  background: white;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.sideMenuItemBlock {
+  //margin-top: 2px;
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+
+  &__itemButton {
+    background: @maroon;
+    font-size: 24px;
+    min-height: 80px;
+    flex: 1;
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    > div {
+      margin-left: 60px;
+    }
+    > div p {
+      margin: 0;
+      font-size: 0.6em;
+    }
+  }
+  &__image {
+    //align-self: stretch;
+    margin-left: auto;
+    object-fit: contain;
+    align-self: stretch;
+    object-position: 100%;
+    max-width: 200px;
+  }
+
+  .sideMenuItemBlock__icon {
+    margin-right: 15px;
+    margin-left: 15px;
+
+  }
+  &__itemButtonChevron {
+    width: 50px;
+  }
+  &__itemButtonText {
+    vertical-align: middle;
+  }
+  &__itemButtonImage {
+    vertical-align: middle;
+    width: 60px;
+    height: 60px;
+    background: #28303b;
+    border-radius: 30px;
+    border-width: 0px;
+    padding: 8px;
+    font-size: 1.8em;
+    color: #ffffff;
+    visibility: hidden;
+  }
+}
+
+.sideMenuItemBlock .sideMenuItemBlock__itemButton:nth-child(1) {
+  background-color: @blue;
+}
+
+.sideMenuItemBlock .sideMenuItemBlock__itemButton:nth-child(2) {
+  background-color: @bronze;
+}
+
+.sideMenuItemBlock .sideMenuItemBlock__itemButton:nth-child(3) {
+  background-color: @lichen;
+}
+
+.sideMenuItemBlock .sideMenuItemBlock__itemButton:nth-child(4) {
+  background-color: @salmon;
+}
+
+.sideMenuItemBlock .sideMenuItemBlock__itemButton:nth-child(5) {
+  background-color: @dark-blue;
+}
+
+/*sideMenuItemBlock__itemButton*/
+//.sideMenuItemBlock__itemButton {
+//  background: @maroon;
+//  /*position:absolute;*/
+//  //display: inline-block;
+//  font-size: 24px;
+//  min-height: 80px;
+//  flex: 1;
+//  color: white;
+//}
+
+//.sideMenuItemBlock__itemButtonImage {
+//  vertical-align: middle;
+//  width: 60px;
+//  height: 60px;
+//  background: #28303b;
+//  border-radius: 30px;
+//  border-width: 0px;
+//  padding: 8px;
+//  font-size: 1.8em;
+//  color: #ffffff;
+//  visibility: hidden;
+//}
+
+//.sideMenuItemBlock__itemButtonChevron {
+//  width: 50px;
+//}
+
+//.sideMenuItemBlock__itemButtonText {
+//  vertical-align: middle;
+//}
+
+.sideMenu__swiper {
+  width: 100%;
+  min-height: 360px;
+}
+
+.swiper-slide {
+  height: 360px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  //background-position: center;
+}

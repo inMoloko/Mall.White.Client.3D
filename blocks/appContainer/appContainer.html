@@ -1,0 +1,13 @@
+<div class="appContainer__basicArea">
+    <div class="appContainer__headBlock">
+        <div class="headBlock__searchControl" ui-view="search"></div>
+    </div>
+    <div class="appContainer__workspaceBlock">
+        <div class="workspaceBlock__sideBlock">
+            <div ui-view="searchResult"></div>
+        </div>
+    </div>
+
+    <div class="appContainer__footerBlock" ng-include="'blocks/navigation/navigation.html'">
+    </div>
+</div>

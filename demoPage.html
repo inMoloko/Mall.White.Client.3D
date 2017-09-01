@@ -1,0 +1,106 @@
+﻿<html>
+<head>
+    <script src="Scripts/bowser/bowser.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            background: lightgray;
+        }
+
+        .h_iframe {
+            position: relative;
+        }
+
+        .h_iframe iframe {
+            -webkit-transform-origin: top left;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="h_iframe">
+        <iframe id="my_iframe" src="/index.html" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+</body>
+<script>
+    var test = (bowser.opera && +bowser.version >= 40) || (bowser.msedge && +bowser.version >= 14) || (bowser.yandexbrowser && +bowser.version >= 16) || (bowser.firefox && +bowser.version >= 49) || (bowser.chrome && +bowser.version >= 53);
+    if (!test) {
+        window.location.href = "/error.html";
+        //console.log(bowser.version, bowser.opera);
+    }
+    var queryDict = {};
+    location.search.substr(1).split("&").forEach(function (item) {
+        queryDict[item.split("=")[0]] = item.split("=")[1]
+    });
+    //var url = '/index.html?CustomerID=' + (queryDict.CustomerID || 8);
+    var url = '/index.html?SerialNumber=DESKTOP-I9AOT8J';
+    document.getElementById('my_iframe').src = url;
+
+    getScale = function () {
+        var element = document.getElementById('my_iframe');
+        if (window.innerWidth >= 1600 && window.innerHeight >= 900) {
+            element.style.width = '100%';
+            element.style.height = '100%';
+            element.style.transform = 'scale(1)';
+        }
+        else {
+            element.style.width = '1600px';
+            element.style.height = '900px';
+            if (window.innerWidth / 1600 > window.innerHeight / 900)
+                element.style.transform = 'scale(' + window.innerHeight / 900 + ')';
+            else
+                element.style.transform = 'scale(' + window.innerWidth / 1600 + ')';
+        }
+    }
+    window.addEventListener("resize", function () {
+        getScale();
+    });
+    getScale();
+</script>
+<!— Yandex.Metrika counter —>
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function () {
+            try {
+                w.yaCounter41154154 = new Ya.Metrika({
+                    id: 41154154,
+                    clickmap: true,
+                    trackLinks: true,
+                    accurateTrackBounce: true,
+                    webvisor: true
+                });
+            } catch (e) {
+            }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () {
+                n.parentNode.insertBefore(s, n);
+            };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else {
+            f();
+        }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/41154154" style="position:absolute; left:-9999px;" alt=""/></div>
+</noscript>
+<!— /Yandex.Metrika counter —>
+</html>

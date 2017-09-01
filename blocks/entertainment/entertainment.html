@@ -1,0 +1,29 @@
+<div class="organization" ng-scrollbars>
+    <div class="organization__logo-container">
+        <img src="" alt="" class="organization__logo-container__img"
+             file-system-image="Organizations/{{controller.item.OrganizationID + '_WideLogo.' + controller.item.WideLogoExtension}}"
+             default="Content/images/list_enterteinment_cover_holder.png"
+             height="350">
+        <!--moloko-image-api="controller.item.OrganizationID"-->
+        <!--url="/Organization/:id/WideLogo" default="Content/images/list_enterteinment_cover_holder.png" height="350">-->
+        <img alt="" class="organization__logo-container__organization-image"
+             file-system-image="Organizations/{{controller.item.OrganizationID + '_Logo.' + controller.item.LogoExtension}}"
+             default="Content/images/card_enterteinment_logo_holder.png">
+        <!--moloko-image-api="controller.item.OrganizationID" url="/Organization/:id/Logo" -->
+
+    </div>
+    <div class="organization__container">
+        <div class="organization__container__categories">
+            <div ng-repeat="cat in controller.item.Categories" ng-bind="cat.Name"></div>
+            <img src="Content/images/icn_sales_shop_list.png" ng-if="controller.item.Proposals.length!==0"
+                 ui-sref="navigation.entertainments.entertainment.proposals({OrganizationID:controller.item.OrganizationID})">
+            <img src="Content/images/icn_sales_shop_card_disabled.png" ng-if="controller.item.Proposals.length===0">
+        </div>
+
+        <h2>{{controller.item.Name}}</h2>
+        <div class="organization__container__description" ng-bind="controller.item.Description">
+
+        </div>
+        <br/>
+    </div>
+</div>

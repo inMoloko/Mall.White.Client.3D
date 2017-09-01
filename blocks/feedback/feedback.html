@@ -1,0 +1,17 @@
+﻿<div class="feedback">
+    <div class="feedback__input">
+        <h2>Твой отзыв</h2>
+        <textarea placeholder="Текст" ng-model="controller.item.text" id="filter"/>
+    </div>
+    <div class="feedback__stars">
+        <img ng-repeat="rate in controller.ratings"
+             ng-src="Content/images/{{controller.item.rating>=rate?'icn_feedback_star_full.png':'icn_feedback_star_empty.png'}}"
+             ng-click="controller.item.rating=rate">
+    </div>
+    <div class="feedback__submit">
+        <button type="button" ng-disabled="!controller.item.text||!controller.item.rating"
+                ng-click="controller.submit()">Отправить
+        </button>
+    </div>
+
+</div>

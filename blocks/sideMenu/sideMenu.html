@@ -1,0 +1,55 @@
+<div id="sideMenu" class="sideMenu" ng-controller="sideMenuController">
+    <div class="sideMenu__swiper swiper-container" id="swiper-container">
+        <div class="swiper-wrapper">
+            <a class="swiper-slide" ui-sref="navigation.more.events.event({EventID:event})"
+               style="background-image:url('{{getImage(event)}}');"
+               ng-repeat="event in events"></a>
+            <!--<div class="swiper-slide"></div><div class="swiper-slide"></div><div class="swiper-slide"></div>-->
+        </div>
+
+    </div>
+
+    <div class="sideMenuItemBlock">
+        <div class="sideMenuItemBlock__itemButton" ng-click="selectItem('shops')">
+            <div>
+                <span class="sideMenuItemBlock__itemButtonText">Магазины</span>
+                <p>Найди свои любимые марки</p>
+            </div>
+            <img class="sideMenuItemBlock__image" src="Content/images/main_recommend_shops.png">
+            <!--<i class="sideMenuItemBlock__icon iconMall-iconArrowRight"></i>-->
+            <img class="sideMenuItemBlock__itemButtonChevron" src="Content/images/arrow_white.png">
+        </div>
+        <div class="sideMenuItemBlock__itemButton" ng-click="selectItem('restaurants')">
+            <div>
+                <span class="sideMenuItemBlock__itemButtonText">Еда</span>
+                <p></p>
+            </div>
+            <img class="sideMenuItemBlock__image" src="Content/images/main_recommend_food.png" alt="Created by Freepik">
+            <img class="sideMenuItemBlock__itemButtonChevron" src="Content/images/arrow_white.png">
+        </div>
+        <div class="sideMenuItemBlock__itemButton" ng-click="selectItem('entertainments')">
+            <div>
+                <span class="sideMenuItemBlock__itemButtonText">Развлечения</span>
+                <p>Собирай впечатления</p>
+            </div>
+            <img class="sideMenuItemBlock__image" src="Content/images/main_recommend_entert.png">
+            <img class="sideMenuItemBlock__itemButtonChevron" src="Content/images/arrow_white.png">
+        </div>
+        <div ng-click="selectItem('proposals')" class="sideMenuItemBlock__itemButton">
+            <div>
+                <span class="sideMenuItemBlock__itemButtonText">Акции</span>
+                <p>Самые выгодные покупки</p>
+            </div>
+            <img class="sideMenuItemBlock__image" src="Content/images/main_recommend_sales.png">
+            <img class="sideMenuItemBlock__itemButtonChevron" src="Content/images/arrow_white.png">
+        </div>
+
+        <div ng-click="selectItem('services')" class="sideMenuItemBlock__itemButton">
+            <div>
+                <span class="sideMenuItemBlock__itemButtonText">Сервисы</span>
+            </div>
+            <img class="sideMenuItemBlock__image" src="Content/images/main_recommend_serv.png">
+            <img class="sideMenuItemBlock__itemButtonChevron" src="Content/images/arrow_white.png">
+        </div>
+    </div>
+</div>

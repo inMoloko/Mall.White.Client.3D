@@ -1,0 +1,273 @@
+@import "../../style.less";
+
+div.leaflet-container {
+  background: #E8E7E4;
+}
+
+.marker__item {
+  fill: @color-base;
+  opacity: 1;
+  fill-opacity: 1;
+  stroke: none;
+  stroke-opacity: 1;
+}
+
+.button-shadow {
+  box-shadow: 0px 2px 13px 0px #777;
+}
+
+.btnContainer__zoom_plus {
+  color: @color-white;
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  border-width: 0px;
+  padding: 0px;
+  position: absolute;
+  left: 5px;
+  background: white url('Content/images/icn_map_plus.png') no-repeat center;
+  background-size: contain;
+  .button-shadow();
+  //> img {
+  //  width: 50px;
+  //}
+}
+
+.btnContainer__zoom_minus {
+  background: white;
+  color: @color-white;
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  border-width: 0px;
+  position: absolute;
+  padding: 0px;
+  top: 5px;
+  left: 5px;
+  background: white url('Content/images/icn_map_minus.png') no-repeat center;
+  background-size: contain;
+  .button-shadow();
+}
+
+.btnContainer__zoom_disabled {
+  color: @color-white;
+  //background: #a7a7a7;
+  opacity: 0.5;
+}
+
+//.colorTheme_black .btnContainer__zoom_disabled {
+//  color: @color-white;
+//  background: #a7a7a7;
+//}
+
+.floor__label {
+  background: @color-white;
+  text-align: center;
+  position: absolute;
+  color: red;
+  border: solid red 2px;
+  border-radius: 1em;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+}
+
+.btnContainer__originalAngle_active {
+  color: @color-work;
+  background: white;
+}
+
+.floor__floor {
+  background-color: black;
+  width: 40px;
+  height: 40px;
+  border-radius: 2em;
+  color: white;
+  padding: 0;
+  font-size: 1.7em;
+  margin-bottom: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  box-shadow: 0px 2px 13px 0px #777;
+  border: none;
+}
+
+.selected .floor__number {
+  color: @color-work;
+}
+
+.colorTheme_black .floor__number {
+  color: @color-white;
+}
+
+.selected {
+  background-color: white;
+  border: 2px solid transparent;
+}
+
+.floor__number {
+  color: @color-white;
+}
+
+.anchor-icon {
+  font-family: @font-base;
+  fill: @color-map-sign;
+  color: @color-map-sign;
+  font-weight: bold;
+}
+
+.marker__text {
+  font-family: @font-base;
+  z-index: 15;
+  position: absolute;
+  display: block;
+  top: -5px;
+  left: 15px;
+  width: 100px;
+  font-weight: bold;
+}
+
+.mapControl {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mapControl__btnContainer {
+  position: absolute;
+  z-index: 999;
+  top: 100px;
+  width: 60px;
+  text-align: center;
+}
+
+.mapControl__btnContainer_bottom {
+  top: 300px;
+}
+
+.mapControl__btnContainer_right {
+  right: 50px;
+}
+
+.mapControl__btnContainer_left {
+  left: 0px;
+}
+
+.floor {
+  position: relative;
+}
+
+.floor__label_right {
+  right: 0em;
+  color: white;
+  background: red;
+  border: 0px;
+  text-align: center;
+  font-size: 10px;
+  padding-top: 4px;
+  font-weight: bold;
+}
+
+.floor__label_right:empty {
+  display: none;
+}
+
+.marker {
+  width: 50px;
+  height: 25px;
+}
+
+.marker svg {
+  width: 10px;
+  height: 10px;
+}
+
+.marker > div {
+  position: relative;
+}
+
+@marker__image_width: 22px;
+.marker__image, .marker__image-sq {
+  width: @marker__image_width;
+  height: 22px;
+}
+
+.marker__image._selected {
+  margin-left: -1px;
+  margin-top: -1px;
+  width: 26px;
+  height: 26px;
+  border: solid red 2px;
+  background: red;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.marker__image-sq._selected {
+  margin-left: -1px;
+  margin-top: -1px;
+  width: 26px;
+  height: 26px;
+  border: solid red 2px;
+  background: red;
+  box-sizing: border-box;
+}
+
+@marker__image-sq_text-width: 150px;
+.marker__image-sq + div {
+  width: @marker__image-sq_text-width;
+  //width
+  margin-left: -(@marker__image-sq_text-width/2 - @marker__image_width/2);
+  text-align: center;
+}
+
+.marker__wc {
+  width: 32px;
+  height: 32px;
+}
+
+.marker__wc._selected {
+  width: 36px;
+  height: 36px;
+  margin-left: -1px;
+  margin-top: -1px;
+  border: solid red 2px;
+  background: red;
+  border-radius: 18px;
+  box-sizing: border-box;
+}
+
+.marker__item._selected {
+  fill: red;
+
+}
+
+div.leaflet-top {
+  visibility: collapse;
+}
+
+.path {
+  stroke-dasharray: 5, 15;
+}
+
+.you {
+  border: solid red 2px;
+  width: 2.3em;
+  height: 2.3em;
+  border-radius: 2.3em;
+  color: red;
+  z-index: 100;
+  text-align: center;
+  padding-top: 0.25em;
+  font-weight: bold;
+  background: white;
+  font-size: 8pt;
+}
+
+.man__item {
+  font-size: 40px;
+  color: red;
+}

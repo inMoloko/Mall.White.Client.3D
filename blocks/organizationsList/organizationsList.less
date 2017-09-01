@@ -1,0 +1,144 @@
+@import "../../style.less";
+
+.organizationsSearchResultItem__categoryBlock {
+  color: gray;
+  font-size: 14px;
+  margin-top: 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: flex;
+  align-items: center;
+  > img {
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+.organizationsSearchResultItem__infoBlock {
+  background: transparent;
+  position: absolute;
+  height: 120px;
+  left: 20px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-right: 16px;
+  width: auto;
+  right: 0px;
+  justify-content: center;
+}
+
+.organizationsSearchResultItem__nameBlock {
+  font-size: 2em;
+  //text-transform: uppercase;
+  //margin-top: 10px;
+}
+
+.organizationsSearchResultItem__errorBlock {
+  background: transparent;
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-right: 30px;
+}
+
+.organizationsSearchResultItem__errorHeaderBlock {
+  background: transparent;
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-right: 30px;
+  overflow-x: hidden;
+}
+
+.organizationsList {
+  background: #ffffff;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.organizationsList__organizationsHeadBlock {
+  z-index: 5;
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid;
+  border-bottom-color: #e4e1e1;
+  background: #ffffff;
+}
+
+.organizationsList__organizationsSearchResultBlock {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+.organizationsHeadBlock__searchCountBlock {
+  background: transparent;
+  z-index: 5;
+  position: absolute;
+  height: 60px;
+  left: 50px;
+  right: 15px;
+  padding: 0px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.searchCountBlock__searchCount {
+  width: 100%;
+  top: 50%;
+  //position: absolute;
+  //margin-top: -10px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  &__filter {
+    min-width: 100px;
+    max-width: 400px;
+    margin-left: auto;
+    border: solid 1px @blue;
+    border-radius: 20px;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 5px;
+    background-color: @light-blue;
+    display: flex;
+    align-items: center;
+    color: @blue;
+    > span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    > img {
+      height: 30px;
+      margin-left: auto;
+    }
+  }
+}
+
+.organizationsSearchResultBlock__organizationsSearchResultItem {
+  background: #ffffff;
+  height: 120px;
+  border-radius: 0px;
+  padding: 0px;
+  border: 0px solid transparent;
+  border-bottom: 1px solid #e4e1e1;
+  margin: 0px;
+  list-style: none;
+}
+
+.errorHeaderBlock {
+  font-size: 1.5em;
+}
+
+.errorBlock {
+  font-size: 1em;
+}

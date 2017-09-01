@@ -1,0 +1,45 @@
+<div class="organizationsList" style="">
+    <div class="organizationsList__organizationsHeadBlock" style="">
+        <div class="organizationsHeadBlock__searchCountBlock" style="">
+            <div class="searchCountBlock__searchCount">
+                <span>Найдено {{controller.searchText&& controller.currentOrganizations.length==0&&otherCurrentOrganizations.length>0?otherCurrentOrganizations.length:controller.currentOrganizations.length}}</span>
+                <div class="searchCountBlock__searchCount__filter" ng-if="controller.filter"
+                     ng-click="controller.clean()"><span ng-bind="controller.filter"></span> <img
+                        src="Content/images/icn_resetfilters.png"></div>
+            </div>
+        </div>
+    </div>
+    <ul class="list-group organizationsList__organizationsSearchResultBlock" ng-scrollbars>
+        <li class="list-group-item organizationsSearchResultBlock__organizationsSearchResultItem"
+            ng-repeat="item in controller.currentOrganizations track by item.OrganizationID"
+            ng-click="controller.select(item)">
+            <div class="organizationsSearchResultItem__infoBlock">
+                <div class="organizationsSearchResultItem__nameBlock" ng-bind="::item.Name">
+                </div>
+                <div class="organizationsSearchResultItem__categoryBlock" style="">
+                    <span ng-bind="::item.Categories|limitTo:6|joinBy:', ':'Name'"></span>
+                    <img ng-if="item.HasMegacard" src="Content/images/icn_mgcard_shoplist.png">
+                    <img ng-if="item.Proposals.length!==0" src="Content/images/icn_sales_shop_list.png">
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div ng-show="controller.currentOrganizations.length==0">
+        <div class="errorHeaderBlock organizationsSearchResultItem__errorHeaderBlock"
+             ng-show="controller.currentOrganizations.length==0">
+            По запросу <strong>"{{controller.searchText| limitTo: 150 }}{{controller.searchText.length > 150 ? '...' :
+            ''}}" </strong><span
+                ng-show="currentCategory&&currentCategory.CategoryID!=-1&&otherCurrentOrganizations.length>0">для категории <strong>"{{currentCategory.Name}}"</strong></span>
+            ничего не найдено.
+        </div>
+        <div class="errorBlock organizationsSearchResultItem__errorBlock">
+            Рекомендации:
+            <ul>
+                <li>Убедитесь, что все слова написаны без ошибок</li>
+                <!--<li>Убедитесь, что выбрана нужная категория</li>-->
+                <li>Используйте более популярные ключевые слова.</li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="organizationsList" style="">
+    <div class="organizationsList__organizationsHeadBlock" style="">
+        <div class="organizationsHeadBlock__searchCountBlock" style="">
+            <div class="searchCountBlock__searchCount" ng-hide="searchText&&$root.currentOrganizations.length==0">
+                Найдено {{$root.currentOrganizations.length}}
+            </div>
+            <div class="searchCountBlock__searchCount"
+                 ng-show="searchText&&$root.currentOrganizations.length==0&&$root.otherCurrentOrganizations.length>0">
+                Найдено {{$root.otherCurrentOrganizations.length}}
+            </div>
+        </div>
+    </div>
+    <ul class="list-group organizationsList__organizationsSearchResultBlock" ng-scrollbars>
+        <li class="list-group-item organizationsSearchResultBlock__organizationsSearchResultItem"
+            ng-class="{'active':controller.isActive(item.OrganizationID)}"
+            ng-repeat="item in $root.currentOrganizations"
+            ui-sref=".organization({OrganizationID:item.OrganizationID})">
+            <!--ng-click="select(item)">-->
+            <div style="position: relative;">
+                <div class="organizationsSearchResultItem__infoBlock" style="">
+                    <div class="organizationsSearchResultItem__nameBlock" style="">
+                        {{::item.Name}}
+                    </div>
+                    <div class="organizationsSearchResultItem__categoryBlock" style="">
+                        {{::item.Categories|limitTo:6|joinBy:', ':'Name'}}
+                    </div>
+                    <!--<div class="organizationsSearchResultItem__floorBlock" style="">-->
+                    <!--<span ng-bind="getFloors(item)"></span> ЭТАЖ-->
+                    <!--</div>-->
+                    <div ng-if="item.megacard" class="organizationsSearchResultItem__megacardBlock" style="">
+                        Принимает MEGACARD
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+
+    <div ng-show="$root.currentOrganizations.length==0">
+        <div class="errorHeaderBlock organizationsSearchResultItem__errorHeaderBlock"
+             ng-show="$root.currentOrganizations.length==0">
+            По запросу <strong>"{{searchText| limitTo: 150 }}{{searchText.length > 150 ? '...' : ''}}" </strong><span
+                ng-show="currentCategory&&currentCategory.CategoryID!=-1&&$root.otherCurrentOrganizations.length>0">для категории <strong>"{{currentCategory.Name}}"</strong></span>
+            ничего не найдено.
+        </div>
+        <div class="errorBlock organizationsSearchResultItem__errorBlock">
+            Рекомендации:
+            <ul>
+                <li>Убедитесь, что все слова написаны без ошибок</li>
+                <li>Используйте более популярные ключевые слова.</li>
+            </ul>
+        </div>
+
+        <div class="errorHeaderBlock organizationsSearchResultItem__errorHeaderBlock"
+             ng-show="$root.otherCurrentOrganizations.length>0">
+            Возможно, Вы искали следующее:
+        </div>
+
+        <ul style="top:310px;" class="list-group organizationsList__organizationsSearchResultBlock">
+            <li class="list-group-item organizationsSearchResultBlock__organizationsSearchResultItem"
+                route-class="{'searchResultFull.result':'searchResultFull'}"
+                ng-repeat="item in $root.otherCurrentOrganizations"
+                ng-click="select(item)">
+                <div style="position: relative;">
+                    <div class="organizationsSearchResultItem__logoBlock"
+                         style="background: #{{item.LogoBaseColor.substring(3)}};">
+                        <!--<img moloko-image-api="item.OrganizationID" url="/Organization/:id/Logo" class="logoBlock__logo" alt="{{::item.Organization.Name}}"-->
+                        <!--style=''>-->
+                        <div ng-if="item.megacard"
+                             style="width:59px;height:30px;background:white;position:absolute;bottom:0;right:0;">
+                            <i class="iconMall-iconMegacard logoBlock__icon"
+                               style="font-size:60px;margin-bottom:-15px;color:black"></i>
+                        </div>
+                    </div>
+
+                    <div class="organizationsSearchResultItem__infoBlock" style="">
+                        <div class="organizationsSearchResultItem__nameBlock" style="">
+                            {{::item.Name}}
+                        </div>
+                        <div class="organizationsSearchResultItem__categoryBlock" style="">
+                            {{::item.CategoryOrganization|limitTo:6|joinBy:', ':'Category.Name'}}
+                        </div>
+                        <div class="organizationsSearchResultItem__floorBlock" style="">
+                            <span ng-bind="getFloors(item)"></span> ЭТАЖ
+                        </div>
+                        <div ng-if="item.megacard" class="organizationsSearchResultItem__megacardBlock" style="">
+                            Принимает MEGACARD
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+@color-base: #006bc2; /*006bc2*/
+@color-work: #28303b; /*28303b*/
+
+@color-black: black; /*black*/
+@color-white: white; /*white*/
+@color-map-back: #f4f7f1;
+@color-map-sign: #f4f7f1; /*white*/
+
+/*@color-map-sign: #f1b904; ������*/
+@font-face {
+  font-family: Din; /* Имя шрифта */
+  src: url('Content/fonts/DINPro-Regular.ttf'); /* Путь к файлу со шрифтом */
+}
+
+@font-base: Din; /*Open Sans*/
+
+@maroon: #EF9A85;
+@maroon-light: #F19981;
+@salmon: #F29A82;
+
+@green: #6B9168;
+@bronze: #D5A72D;
+@yellow: #B28B24;
+@blue: #93B7CD;
+@light-blue: #E9F1F4;
+@dark-blue: #253034;
+@lichen: #82AB9D;
+
+@navigation-footer-height: 60px;
+
+* {
+  outline: none;
+}
+
+body {
+  font-family: @font-base;
+}
+
+.base-icon-btn {
+  font-size: 3em;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.base-blur {
+  content: ' ';
+  width: 620px;
+  height: 40px;
+  display: block;
+  background: linear-gradient(to bottom, transparent, white);
+  position: fixed;
+  bottom: 60px;
+  opacity: 0.8;
+}
+
+.heading__title {
+  //text-transform: uppercase;
+  font-size: 26px;
+  text-align: left;
+  margin-left: 40px;
+}
+
+.base-tile {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.flex-row, .row {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.align-item-center {
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+}

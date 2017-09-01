@@ -1,0 +1,181 @@
+@font-face {
+    font-family: 'iconMallClient';
+    src: url('fonts/iconMallClient.eot?usjn1w');
+    src: url('fonts/iconMallClient.eot?usjn1w#iefix') format('embedded-opentype'),
+    url('fonts/iconMallClient.ttf?usjn1w') format('truetype'),
+    url('fonts/iconMallClient.woff?usjn1w') format('woff'),
+    url('fonts/iconMallClient.svg?usjn1w#iconMallClient') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="iconMall-"], [class*=" iconMall-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'iconMallClient' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.iconMall-iconSendingMail:before {
+    content: "\e924";
+}
+
+.iconMall-iconFacebook:before {
+    content: "\e922";
+}
+
+.iconMall-iconMail:before {
+    content: "\e923";
+}
+
+.iconMall-iconVK:before {
+    content: "\e925";
+}
+
+.iconMall-iconTurn:before {
+    content: "\e921";
+}
+
+.iconMall-tbus:before {
+    content: "\e920";
+}
+
+.iconMall-iconCinema:before {
+    content: "\e91f";
+}
+
+.iconMall-iconBadSmile:before {
+    content: "\e91d";
+}
+
+.iconMall-iconGoodSmile:before {
+    content: "\e91e";
+}
+
+.iconMall-iconEvent:before {
+    content: "\e91c";
+}
+
+.iconMall-youHere .path1:before {
+    content: "\e91a";
+    color: rgb(255, 0, 0);
+}
+
+.iconMall-youHere .path2:before {
+    content: "\e91b";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+
+.iconMall-burger:before {
+    content: "\e914";
+}
+
+.iconMall-busStop:before {
+    content: "\e915";
+}
+
+.iconMall-sale:before {
+    content: "\e917";
+}
+
+.iconMall-service:before {
+    content: "\e918";
+}
+
+.iconMall-shop:before {
+    content: "\e919";
+}
+
+.iconMall-iconRotateMap:before {
+    content: "\e913";
+}
+
+.iconMall-iconMan:before {
+    content: "\e900";
+}
+
+.iconMall-iconMinus:before {
+    content: "\e911";
+}
+
+.iconMall-iconPlus:before {
+    content: "\e912";
+}
+
+.iconMall-bus:before {
+    content: "\e90f";
+}
+
+.iconMall-minibus:before {
+    content: "\e910";
+}
+
+.iconMall-iconClose:before {
+    content: "\e916";
+}
+
+.iconMall-iconMegacard:before {
+    content: "\e901";
+}
+
+.iconMall-iconArrowDown:before {
+    content: "\e902";
+}
+
+.iconMall-iconArrowLeft:before {
+    content: "\e903";
+}
+
+.iconMall-iconArrowRight:before {
+    content: "\e904";
+}
+
+.iconMall-iconArrowUp:before {
+    content: "\e905";
+}
+
+.iconMall-iconCheck:before {
+    content: "\e906";
+}
+
+.iconMall-iconEye:before {
+    content: "\e907";
+}
+
+.iconMall-iconHelp:before {
+    content: "\e908";
+}
+
+.iconMall-iconHome:before {
+    content: "\e909";
+}
+
+.iconMall-iconInvalid:before {
+    content: "\e90a";
+}
+
+.iconMall-iconList:before {
+    content: "\e90b";
+}
+
+.iconMall-iconMap:before {
+    content: "\e90c";
+}
+
+.iconMall-iconMessage:before {
+    content: "\e90d";
+}
+
+.iconMall-iconSearch:before {
+    content: "\e90e";
+}
+

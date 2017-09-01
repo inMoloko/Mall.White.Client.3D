@@ -1,0 +1,26 @@
+<div class="proposalFilter">
+    <div class="proposalFilter__type">
+        <div ng-class="{'active':controller.filterName=='shopFilter'}" ng-click="controller.selectFilter('shopFilter')">
+            Магазины <span ng-bind="controller.selectedCategories('shopFilter')"></span></div>
+        <div ng-class="{'active':controller.filterName=='restaurantFilter'}"
+             ng-click="controller.selectFilter('restaurantFilter')">Еда <span
+                ng-bind="controller.selectedCategories('restaurantFilter')"></span></div>
+        <div ng-class="{'active':controller.filterName=='entertainmentFilter'}"
+             ng-click="controller.selectFilter('entertainmentFilter')">Развлечения<span
+                ng-bind="controller.selectedCategories('entertainmentFilter')"></span></div>
+    </div>
+    <div class="proposalFilter__container">
+        <button class="proposalFilter__button" ng-click="controller.selectAll()"
+                ng-class="{'proposalFilter__button_selected':controller.allSelected}">{{controller.allSelected?'Сбросить
+            все':'Выбрать все'}}
+        </button>
+        <button class="proposalFilter__button" ng-repeat="category in controller.limmited track by category.CategoryID"
+                ng-click="controller.select(category)"
+                ng-class="{'proposalFilter__button_selected':category.select}"
+                ng-bind="category.Name"></button>
+        <button class="proposalFilter__button" ng-click="controller.changeLimit()"
+                ng-if="controller.categories.length>20"
+                ng-class="{'proposalFilter__button_close':controller.full}">{{controller.full?'Свернуть':'...'}}
+        </button>
+    </div>
+</div>

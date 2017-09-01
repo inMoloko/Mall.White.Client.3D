@@ -1,0 +1,6 @@
+<div class="favoriteSearch">
+    <h2 class="favoriteSearch__title">Популярные запросы</h2>
+    <ul class="favoriteSearch__list">
+        <li ng-repeat="f in controller.favorites" ng-bind="f" ng-click="controller.select(f)"></li>
+    </ul>
+</div>

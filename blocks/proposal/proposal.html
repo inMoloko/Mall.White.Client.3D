@@ -1,0 +1,34 @@
+<div class="proposal" ng-scrollbars>
+    <div class="proposal__logo-container">
+        <img src="" alt="" class="proposal__logo-container__img"
+             file-system-image="Proposals/{{controller.item.ProposalID + '_WideLogo.' + controller.item.WideLogoExtension}}"
+             default="Content/images/card_sales_cover_holder.png">
+        <img src="" alt="" class="proposal__logo-container__organization-image"
+             ui-sref="navigation.shops.shop({OrganizationID:controller.item.Organization.OrganizationID, CategoryID: menuItems['Магазины']})"
+             default="Content/images/card_sales_logo_holder.png"
+             file-system-image="Organizations/{{controller.item.Organization.OrganizationID + '_Logo.' + controller.item.Organization.LogoExtension}}">
+        <img class="proposal__logo-container__megacard" src="Content/images/megacard2.png"
+             ng-if="controller.item.Organization.Megacard">
+    </div>
+
+    <div class="proposal__container">
+        <div class="proposal__container__remain" ng-if="controller.item.DateEnd"
+             ng-class="{'expired':controller.item.RemainDays==0}">
+            <div></div>
+            <span ng-bind="controller.item.DateEnd|remainDays"></span>
+        </div>
+        <div class="proposal__container__organization"
+             ui-sref="navigation.shops.shop({OrganizationID:controller.item.Organization.OrganizationID, CategoryID: menuItems['Магазины']})">
+            <span ng-bind="controller.item.Organization.Name"></span>
+            <img src="Content/images/arrow_black.png">
+        </div>
+        <div class="proposal__container__summary" ng-bind="controller.item.Name">
+
+        </div>
+        <div class="proposal__container__description" ng-bind="controller.item.Description">
+
+        </div>
+        <br/>
+    </div>
+</div>
+

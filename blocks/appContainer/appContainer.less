@@ -1,0 +1,177 @@
+@import "../../style.less";
+
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+  opacity: 0.5;
+  border-width: 1px 1px 1px 2px;
+  border-color: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: @color-work;
+  border-width: 1px 1px 1px 2px;
+  border-color: transparent;
+}
+
+//div.mCSB_dragger_bar {
+//  background-color: @color-work !important;
+//  -webkit-border-radius: 4px !important;
+//  -moz-border-radius: 4px !important;
+//  border-radius: 4px !important;
+//}
+
+.mCSB_container_wrapper {
+  margin-right: 0;
+}
+
+.mCSB_container {
+  padding: 0 !important;
+}
+
+div.mCSB_dragger_bar {
+  background-color: @color-work !important;
+  opacity: 0.1;
+  border-radius: 0 !important;
+  width: 6px !important;
+}
+
+div.mCSB_dragger_bar:hover {
+  opacity: 1;
+}
+
+div.mCSB_draggerContainer {
+  //margin: 0 !important;
+}
+
+.mCSB_draggerRail {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  border-width: 0;
+  background-color: transparent;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-track:hover {
+  border-left: solid 0px transparent;
+}
+
+.appContainer {
+  font-family: @font-base;
+  background: #f4f7f1;
+  width: 100%;
+  padding: 0px;
+  height: 100%;
+  min-height: 768px;
+  position: absolute;
+  line-height: 1.25;
+  &__mapBlock {
+    //width: calc(~"100%" - ~"630px");
+    margin-left: 630px;
+    height: 100%;
+    background: transparent;
+  }
+  &__basicArea {
+    height: 100%;
+    width: 630px;
+    position: absolute;
+    box-shadow: 0 0px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+  &__footerBlock {
+    background: transparent;
+    width: 630px;
+    height: 60px;
+    bottom: 0;
+    position: absolute;
+  }
+}
+
+.mCSB_dragger {
+  height: 96px !important;
+}
+
+div.mCSB_scrollTools {
+  opacity: 1 !important;
+}
+
+.list-group-item:first-child {
+  border-radius: 0px;
+}
+
+.list-group-item:last-child {
+  border-radius: 0px;
+}
+
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.appContainer__headBlock {
+  width: 630px;
+  height: 100px;
+  position: absolute;
+  background: transparent;
+  //box-shadow: 5px 0 5px -5px #333;
+}
+
+.headBlock__searchControl {
+  background: @color-white;
+  position: absolute;
+  left: 0;
+  right: 0px;
+  height: 100%;
+  width: 630px;
+  padding-top: 0px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.appContainer__workspaceBlock {
+  background: transparent;
+  position: absolute;
+  width: 630px;
+  left: 0px;
+  bottom: 60px;
+  top: 100px;
+}
+
+.workspaceBlock__sideBlock {
+  width: 630px;
+  height: 100%;
+  top: 0px;
+  position: absolute;
+}
+
+.appContainer__infoBlock {
+  height: 100%;
+  top: 0px;
+  left: 635px;
+  right: 0px;
+  position: absolute;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.bannerSlides {
+  object-fit: cover;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

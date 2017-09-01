@@ -1,0 +1,80 @@
+@import "../../style.less";
+
+.navigation {
+  height: 60px;
+}
+
+.navigation > div {
+  flex: 1;
+}
+
+.navigation-item {
+  justify-content: center;
+}
+
+.navigation-item .img {
+  height: 30px;
+  width: 30px;
+  flex-shrink: 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.navigation.main {
+  background: black;
+  color: white;
+}
+
+.navigation.main svg {
+  fill: white;
+}
+
+.navigation.shop,
+.navigation.shops {
+  background: @blue;
+  color: white;
+}
+
+.navigation.entertainment {
+  background: @lichen;
+}
+
+.navigation.service {
+  background: @dark-blue;
+  color: white;
+}
+
+.navigation.proposals {
+  background: @maroon;
+  color: white;
+}
+
+.navigation.food {
+  background: @yellow;
+  color: white;
+}
+
+.navigation.more {
+  background: @green;
+  color: white;
+}
+
+.navigation-item:nth-child(1) div.img {
+  background-image: url('Content/images/ic_bottom_bar_home.png');
+}
+
+.navigation-item:nth-child(3) div.img {
+  background-image: url('Content/images/ic_bottom_bar_sales.png');
+}
+
+.navigation-item:nth-child(2) div.img {
+  background-image: url('Content/images/ic_bottom_bar_shop.png');
+}
+
+.navigation-item:nth-child(4) div.img {
+  background-image: url('Content/images/ic_bottom_bar_food.png');
+}
+
+.navigation-item:nth-child(5) div.img {
+  background-image: url('Content/images/ic_bottom_bar_more.png');
+}

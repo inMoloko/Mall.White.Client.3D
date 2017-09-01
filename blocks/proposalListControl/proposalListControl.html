@@ -1,0 +1,46 @@
+<div class="proposalsListControl" style="">
+    <div class="proposalsListControl__total">
+        <span class="proposalsListControl__total__title">Найдено</span>&nbsp;<span ng-bind="items.length"></span>
+        <div class="proposalsListControl__total__filter" ng-if="controller.filter" ng-click="controller.clean()"><span
+                ng-bind="controller.filter"></span> <img
+                src="Content/images/icn_resetfilters.png"></div>
+    </div>
+    <ul class="list-group proposalsListControl__listBlock" style="" ng-scrollbars>
+        <li class="list-group-item proposalsListControlListBlock__listElement"
+            ng-repeat="item in items track by item.ProposalID" data-org-id="{{item.Organization.OrganizationID}}"
+            ui-sref=".proposal({OrganizationID:item.Organization.OrganizationID,ProposalID:item.ProposalID})">
+            <div class="proposalsListControlListElement__infoBlock">
+                <div class="proposalsListControlListElement__remainder" ng-if="item.DateEnd"
+                     ng-class="{'expired':item.RemainDays==0}">
+
+                    <div src="Content/images/icn_alarm_red.png"></div>
+                    <span ng-bind="::item.DateEnd|remainDays"></span>
+                </div>
+                <div class="proposalsListControlListElement__name" ng-bind="::item.Organization.Name">
+                </div>
+                <div class="proposalsListControlListElement__summary" ng-bind="::item.Name">
+                </div>
+            </div>
+            <div class="proposalsListControlListElement__imageBlock">
+                <img file-system-image="Proposals/{{item.ProposalID + '_WideLogo.' + item.WideLogoExtension}}"
+                     default="Content/images/card_sales_cover_holder.png">
+                <!--moloko-image-api="item.ProposalID" url="/Proposal/:id/WideLogo"-->
+
+            </div>
+        </li>
+    </ul>
+    <div ng-show="items.length==0">
+        <div class="errorHeaderBlock organizationsSearchResultItem__errorHeaderBlock">
+            По запросу <strong>"{{searchText| limitTo: 150 }}{{searchText.length > 150 ? '...' : ''}}" </strong>
+            ничего не найдено.
+        </div>
+        <div class="errorBlock organizationsSearchResultItem__errorBlock">
+            Рекомендации:
+            <ul>
+                <li>Убедитесь, что все слова написаны без ошибок</li>
+                <li>Убедитесь, что выбрана нужная категория</li>
+                <li>Используйте более популярные ключевые слова.</li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿<div class="schedule">
+    <div class="schedule__main">
+        <img src="Content/images/icn_clock.png">
+        <h2 class="schedule__main_title" ng-bind="customer.Name"></h2>
+        <div class="schedule__main_title">Сегодня с {{::customer.ScheduleFrom}} до {{::customer.ScheduleTo}}</div>
+    </div>
+    <ul class="schedule__list">
+        <li class="schedule__list__item" ng-repeat="org in anchorOrganizations"
+            ui-sref="navigation.shop({OrganizationID: org.OrganizationID})">
+            <span ng-bind="org.Name"></span>
+            <div>
+                <div class="schedule-item">
+                    <div>{{org.displaySchedule[0].type}}</div>
+                    <span>{{org.displaySchedule[0].schedule}}</span>
+                </div>
+                <div class="schedule-item" ng-repeat="schedule in org.displaySchedule" ng-if="$index != 0">
+                    <div>{{schedule.type}}</div>
+                    <span>{{schedule.schedule}}</span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+</div>
