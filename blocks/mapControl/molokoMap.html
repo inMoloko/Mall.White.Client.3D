@@ -44,10 +44,15 @@
     </div>
     <div class="mapControl__btnContainer mapControl__btnContainer_right mapControl__btnContainer_bottom btnContainer">
         <div ng-repeat="fl in $ctrl.mapFloors" class="floor">
+            <div class="floor__label floor__label_left" ng-show="$ctrl.TerminalMapObject.Number==fl.number">
+                <div style="width: 16px;height: 16px;text-align: center;font-size: 9px;padding-top: 2px;font-weight: bold;">
+                    Вы
+                </div>
+            </div>
             <div class="floor__label floor__label_right" ng-bind="$ctrl.getCount(fl)">>
             </div>
             <button class="btn floor__floor" ng-click="$ctrl.setFloor(fl.name)"
-                    ng-class="{'selected':$ctrl.currentMapFloor == fl.name}">
+                    ng-class="{'selected':$ctrl.mapviewer.getCurrentFloor() == fl.name}">
                 <span class="floor__number" ng-bind="fl.number"></span>
             </button>
         </div>

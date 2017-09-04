@@ -2,7 +2,7 @@
     <div class="schedule__main">
         <img src="Content/images/icn_clock.png">
         <h2 class="schedule__main_title" ng-bind="customer.Name"></h2>
-        <div class="schedule__main_title">Сегодня с {{::customer.ScheduleFrom}} до {{::customer.ScheduleTo}}</div>
+        <div class="schedule__main_title">Сегодня с {{::controller.schedule.From}} до {{::controller.schedule.To}}</div>
     </div>
     <ul class="schedule__list">
         <li class="schedule__list__item" ng-repeat="org in anchorOrganizations"

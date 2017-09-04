@@ -369,6 +369,21 @@
                     }
                 }
             })
+            .state('navigation.favoriteSearch.searchResult.restaurant', {
+                url: '/organization/:OrganizationID?CategoryID',
+                views: {
+                    'search@': {
+                        templateUrl: 'blocks/restaurantHeading/restaurantHeading.html',
+                        controller: 'restaurantHeadingController',
+                        controllerAs: 'controller'
+                    },
+                    'searchResult@': {
+                        templateUrl: 'blocks/restaurant/restaurant.html',
+                        controller: 'restaurantController',
+                        controllerAs: 'controller'
+                    }
+                }
+            })
             .state('navigation.favoriteSearch.searchResult.entertainment', {
                 url: '/entertainment/:OrganizationID?CategoryID',
                 views: {
@@ -490,7 +505,9 @@
                         templateUrl: 'blocks/scheduleHeading/scheduleHeading.html'
                     },
                     'searchResult@': {
-                        templateUrl: 'blocks/schedule/schedule.html'
+                        templateUrl: 'blocks/schedule/schedule.html',
+                        controller: 'scheduleController',
+                        controllerAs: 'controller'
                     }
                 },
             })

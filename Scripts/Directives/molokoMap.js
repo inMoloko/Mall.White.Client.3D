@@ -6,6 +6,7 @@
         Link: 1,
         Service: 2
     };
+    const highlight = 0xed1e24;
 
     class MolokoMapController {
         constructor($rootScope, settings, $linq, $state, $stateParams, $timeout, $element, vgIdService, $scope, dbService, $q, organizationService) {
@@ -193,10 +194,23 @@
                         alert('Problems rendering the route between ' + pRouteRequest.src + ' and ' + pRouteRequest.dst + '.');
                     }
                     self.currentNavigation = new MyNavigation(self.mapviewer, pRouteData, self.ids);
-                    self.currentNavigation.goToCurrentInstruction();
-                    //self.$scope.$digest();
-                    //instructions_overlay_visible = true;
-                    //updateToggleInstructions();
+                    // self.currentNavigation.goToCurrentInstruction();
+
+
+                    const positions = self.$linq.Enumerable()
+                        .From(pRouteData.navigation.instructions)
+                        .SelectMany(i => i.positions).Select(i => self.mapviewer.convertLatLonToPoint(i)).ToArray();
+
+                    if (shop_src.vg && shop_src.vg.position) {
+                        shop_src = source.vg.position;
+                    }
+
+                    let viewpoint_options = Object.assign({
+                        //points: [shop_src, self.mapviewer.getPlace(shop_dst).vg.position]
+                        points: positions
+                    }, self.paddings);
+
+                    self.mapviewer.camera.position = self.mapviewer.getViewpointFromPositions(viewpoint_options);
                 });
         }
 
@@ -208,7 +222,7 @@
             dataPromise.then(data => {
                 let floor = data.Floors.find(i => i.TerminalMapObject);
                 self.TerminalMapObject = floor.TerminalMapObject;
-                self.TerminalMapObject.Organization.VisioglobeID = 'KSK-15';
+                self.TerminalMapObject.Organization.VisioglobeID = 'iPoint9';
                 if (self.TerminalMapObject !== undefined) {
                     self.TerminalMapObject.Number = data.Floors.find(flr => flr.FloorID == self.TerminalMapObject.FloorID).Number;
                 }
@@ -225,7 +239,8 @@
             //     this.ids = i;
             //
             // });
-            let mapPromise = this.$q.defer();
+            let mapPromise;
+            this.mapPromise = mapPromise = this.$q.defer();
             this.mapviewer.initialize(elm, mapviewer_parameters)
                 .done(function () {
                     self.mapviewer.start();
@@ -241,13 +256,15 @@
                     let viewpoint_options = {points: [self.mapviewer.camera.position], left: 500};
                     self.mapviewer.camera.position = self.mapviewer.getViewpointFromPositions(viewpoint_options);
 
-                    self.mapviewer.setPlaceName('KSK-15', 'Terminal');
+                    // self.mapviewer.setPlaceName('KSK-15', 'Terminal');
 
                     mapPromise.resolve();
 
-                    let r = self.mapviewer.getPlace('iPoint2');
                 });
             this.$q.all([dataPromise, mapPromise.promise]).then(i => {
+                self.$linq.Enumerable().From(i[0].Organizations).Select(i => i.Value).Where(i => i.VisioglobeID).ForEach(j => {
+                    self.mapviewer.setPlaceName(j.VisioglobeID, {text: j.Name, textTextureHeight: 256});
+                });
                 self.reset();
             });
 
@@ -257,6 +274,16 @@
                     self.setFloor(event.args.target.floorID);
                     return false;
                 }
+                // $digest!
+                self.$timeout(function () {
+                    // console.log(event);
+                });
+            });
+            this.mapviewer.on('redraw', function (event) {
+                // $digest!
+                self.$timeout(function () {
+                    // console.log(event);
+                });
             });
             self.$rootScope.$on('$stateChangeSuccess',
                 function (event, toState, toParams, fromState, fromParams) {
@@ -266,27 +293,38 @@
                         if (self.selectedShops && self.selectedShops.length !== 0) {
                             self.selectedShops.forEach(i => self.mapviewer.removeHighlight(i));
                         }
-                        self.dbService.organizationGetById(self.$state.params.OrganizationID).then(org => {
-                            self.selectedOrganizations = [org];
-                            if (!org.VisioglobeID) {
-                                console.error('Нет VisioglobeID у организации', org.OrganizationID);
-                                return;
-                            }
-                            if (self.mapviewer.isLoaded()) {
-                                // let places = self.mapviewer.getAllPlaces();
-                                // let r = Math.floor(Math.random() * (Object.keys(places).length));
-                                // let key = places[Object.keys(places)[r]];
-                                let key = self.mapviewer.getPlace(org.VisioglobeID);
-                                if (self.active_shop !== null) {
-                                    self.mapviewer.removeHighlight(self.active_shop);
-                                    self.active_shop = null;
+                        let orgPromise = self.dbService.organizationGetById(self.$state.params.OrganizationID);
+
+                        self.$q.all([orgPromise, self.mapPromise.promise])
+                            .then(result => {
+                                let org = result[0];
+                                self.selectedOrganizations = [org];
+                                if (!org.VisioglobeID) {
+                                    console.error('Нет VisioglobeID у организации', org.OrganizationID);
+                                    return;
                                 }
-                                self.mapviewer.highlight(key, 0x00FF00, {opacity: 0.5});
-                                self.active_shop = key;
-                                self.setFloor(key.vg.floor);
-                                self.doRouting(self.TerminalMapObject.Organization.VisioglobeID || 'KSK-15', key.vg.id);
-                            }
-                        });
+                                if (self.mapviewer.isLoaded()) {
+                                    // let places = self.mapviewer.getAllPlaces();
+                                    // let r = Math.floor(Math.random() * (Object.keys(places).length));
+                                    // let key = places[Object.keys(places)[r]];
+                                    let key = self.mapviewer.getPlace(org.VisioglobeID);
+                                    if (self.active_shop !== null) {
+                                        self.mapviewer.removeHighlight(self.active_shop);
+                                        self.active_shop = null;
+                                    }
+                                    self.mapviewer.highlight(key, highlight, {opacity: 0.5});
+                                    self.active_shop = key;
+
+                                    // self.setFloor(key.vg.floor);
+                                    if (self.TerminalMapObject !== undefined) {
+                                        self.setFloor(self.mapFloors.find(floor => floor.number === self.TerminalMapObject.Number).name);
+                                    }
+
+                                    let id = self.TerminalMapObject.Organization.VisioglobeID || 'iPoint4';
+                                    const poi = self.mapviewer.getPoint(id);
+                                    self.doRouting(poi, key.vg.id);
+                                }
+                            });
                     } else if (self.$state.params.Organizations) {
                         self.selectOrganizations(self.$state.params.Organizations);
                     }
@@ -317,7 +355,7 @@
             if (organizations && organizations.length !== 0) {
                 self.selectedShops = organizations.filter(i => i.VisioglobeID).map(i => self.mapviewer.getPlace(i.VisioglobeID)).filter(i => i !== false);
                 self.selectedShops.forEach(i => {
-                    this.mapviewer.highlight(i, 0x00FF00, {opacity: 0.5});
+                    this.mapviewer.highlight(i, highlight, {opacity: 0.5});
                 });
                 let positions = self.selectedShops.map(i => i.vg.position);
                 let viewpoint_options = Object.assign({

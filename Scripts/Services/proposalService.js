@@ -36,6 +36,9 @@
             return result.OrderBy(i => i.DateEnd).ToArray();
         });
     };
+    service.prototype.sort = function (date) {
+        return date ? moment(date).unix() : 0;
+    };
     service.prototype.getByOrganization = function (id) {
         let self = this;
         return self.dbService.getData().then(data => {

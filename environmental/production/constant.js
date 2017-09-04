@@ -25,7 +25,7 @@
         autoReset: true,
         mapScale: 1,
         resourceFolder: 'Content/Backup',
-        dbPath: `http://lk.inmoloko.ru/api/Backup/Get?TerminalID=${queryDict.TerminalID || 4}`,
+        dbPath: `http://lk.inmoloko.ru/api/Backup/Get?TerminalID=${queryDict.TerminalID || 5}`,
         preventStatistic: true,
         useGeo: true,
         visioglobeImagePath: 'Content/images'
