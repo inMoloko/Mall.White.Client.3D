@@ -235,10 +235,6 @@
                 onObjectMouseUp: (event, element) => self.onObjectMouseUp(event, element)
             };
 
-            // this.vgIdService.get().then(i => {
-            //     this.ids = i;
-            //
-            // });
             let mapPromise;
             this.mapPromise = mapPromise = this.$q.defer();
             this.mapviewer.initialize(elm, mapviewer_parameters)
@@ -256,15 +252,39 @@
                     let viewpoint_options = {points: [self.mapviewer.camera.position], left: 500};
                     self.mapviewer.camera.position = self.mapviewer.getViewpointFromPositions(viewpoint_options);
 
-                    // self.mapviewer.setPlaceName('KSK-15', 'Terminal');
+
 
                     mapPromise.resolve();
 
                 });
+
             this.$q.all([dataPromise, mapPromise.promise]).then(i => {
+                let point = self.mapviewer.getPoint(self.TerminalMapObject.Organization.VisioglobeID);
+                point.z = 8;
+                const scale = 1;
+                self.mapviewer.addPOI({
+                    url: 'Content/images/youHere.png',
+                    id: 'terminal',
+                    overlay: true,
+                    floor: point.floor,
+                    flip: false,
+                    zoomScaleFactor: 4,
+                    position: point,
+                    width: 354 / scale,
+                    height: 533 / scale,
+                    alignment: {x: 0, y: 0}
+                });
+
+            });
+
+
+            this.$q.all([dataPromise, mapPromise.promise]).then(i => {
+
                 self.$linq.Enumerable().From(i[0].Organizations).Select(i => i.Value).Where(i => i.VisioglobeID).ForEach(j => {
                     self.mapviewer.setPlaceName(j.VisioglobeID, {text: j.Name, textTextureHeight: 256});
                 });
+
+                self.mapviewer.camera.minRadius = 100;
                 self.reset();
             });
 

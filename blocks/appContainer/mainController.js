@@ -7,6 +7,9 @@
 
             statisticService.sendStatistics();
             Idle.watch();
+
+            if ($state.current.name === 'navigation')
+                $rootScope.$emit('resetMap');
         });
 
         // statisticService.getAll().then(i => {

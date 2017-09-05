@@ -52,8 +52,10 @@
             <div class="floor__label floor__label_right" ng-bind="$ctrl.getCount(fl)">>
             </div>
             <button class="btn floor__floor" ng-click="$ctrl.setFloor(fl.name)"
-                    ng-class="{'selected':$ctrl.mapviewer.getCurrentFloor() == fl.name}">
-                <span class="floor__number" ng-bind="fl.number"></span>
+                    ng-class="{'selected':$ctrl.mapviewer.getCurrentFloor() == fl.name}"
+                    style="background-image: url('Content/images/icn_map_{{fl.number}}_floor{{$ctrl.mapviewer.getCurrentFloor() == fl.name?'_selected':''}}.png')">
+
+                <!--<span class="floor__number" ng-bind="fl.number"></span>-->
             </button>
         </div>
     </div>
