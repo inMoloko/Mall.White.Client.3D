@@ -387,6 +387,7 @@ class MyRoute {
                                             id: 'GO TO PREV ' + lCurrentFloorName + '->' + prevFloorName,
                                             onObjectMouseUp: function () {
                                                 mapviewer.changeFloor(prevFloorName);
+
                                                 return false;
                                             },
                                             position: {x: overlayPoints[0].x, y: overlayPoints[0].y, z: routePinHeight},
@@ -501,6 +502,7 @@ class MyRoute {
 
                         if (lNextFloorHeight != lCurrentFloorHeight) {
                             (function (nextFloorName, nextFloorHeight) {
+                                console.log(lNextDestinationIndex, lNextLeg);
                                 // go to next
                                 mOverlayRoutePOIs.push(
                                     mapviewer.addPOI({

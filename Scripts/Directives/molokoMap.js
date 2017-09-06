@@ -263,7 +263,7 @@
                 point.z = 8;
                 const scale = 1;
                 self.mapviewer.addPOI({
-                    url: 'Content/images/youHere.png',
+                    url: 'Content/images/youHereSquare.png',
                     id: 'terminal',
                     overlay: true,
                     floor: point.floor,
