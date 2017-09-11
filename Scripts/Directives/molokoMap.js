@@ -210,7 +210,10 @@
                         points: positions
                     }, self.paddings);
 
-                    self.mapviewer.camera.position = self.mapviewer.getViewpointFromPositions(viewpoint_options);
+                    let tmp = self.mapviewer.getViewpointFromPositions(viewpoint_options);
+                    tmp.radius += 100;
+                    self.mapviewer.camera.position = tmp;
+
                 });
         }
 
@@ -253,7 +256,6 @@
                     self.mapviewer.camera.position = self.mapviewer.getViewpointFromPositions(viewpoint_options);
 
 
-
                     mapPromise.resolve();
 
                 });
@@ -268,7 +270,7 @@
                     overlay: true,
                     floor: point.floor,
                     flip: false,
-                    zoomScaleFactor: 4,
+                    zoomScaleFactor: 6,
                     position: point,
                     width: 354 / scale,
                     height: 533 / scale,
@@ -283,7 +285,8 @@
                 self.$linq.Enumerable().From(i[0].Organizations).Select(i => i.Value).Where(i => i.VisioglobeID).ForEach(j => {
                     self.mapviewer.setPlaceName(j.VisioglobeID, {text: j.Name, textTextureHeight: 256});
                 });
-
+                // let t = self.mapviewer.getPlace('OBISTORE');
+                // self.mapviewer.setPlaceName('OBISTORE', {text: 'FFFFFFFFFFFFFFFF',textTextureHeight: 256});
                 self.mapviewer.camera.minRadius = 100;
                 self.reset();
             });
@@ -346,6 +349,14 @@
                                 }
                             });
                     } else if (self.$state.params.Organizations) {
+                        // Если зашли на страницу с фльтром, но фильтр пустой НЕ ПОКАЗЫВАЕМ выделение.
+                        if (self.$state.params.hasOwnProperty('Filter') && !self.$state.params.Filter) {
+                            if (self.selectedShops && self.selectedShops.length !== 0) {
+                                self.selectedShops.forEach(i => self.mapviewer.removeHighlight(i));
+                            }
+                            self.selectedShops = null;
+                            return;
+                        }
                         self.selectOrganizations(self.$state.params.Organizations);
                     }
                     else {

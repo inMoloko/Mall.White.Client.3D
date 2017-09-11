@@ -398,7 +398,8 @@ class MyNavigation {
                 viewpoint: {
                     position: position
                 },
-                floorID: instructionFloor
+                floorID: instructionFloor,
+                floorAnimationDuration: 1.5
             });
             return;
         }
